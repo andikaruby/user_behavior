@@ -1,7 +1,7 @@
 select * 
 from 
 (-- tansaction table
-	SELECT	*, id, 
+	SELECT	*, id
 	FROM transactions_data 
 ) ch
 left join 
@@ -10,7 +10,7 @@ left join
 		--coba kita show all dulu nanti baru kita lihat di requirement BRDnya kyk gimana.
 	-- case when case_type='isi_kompleks_dari_case_kyk_gimana' then 'Lolos Credit Score' else 'Tidak Lolos Credit Score' end 'Bisa Dipertimbangkan'
 	from users_data 
-		where credit_score >= '700'
+		where credit_score >= '700' and yearly_income >= '$50000'
 ) cl on ch.id = cl.id
 left join 
 (-- entitas di cards_data table
@@ -19,3 +19,4 @@ left join
 		-- where card_type='credit' -- kita taro kondisi yang munculnya type credit saja, ini jika diminta
 ) doc1 on ch.id=doc1.id
 order by 1 asc
+
